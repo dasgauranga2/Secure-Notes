@@ -4,6 +4,7 @@ package com.gauranga.securenotes;
 //}
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,12 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, titles.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, titles.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, NoteDetailActivity.class);
+                intent.putExtra("TITLE",titles.get(position));
+                intent.putExtra("CONTENT",contents.get(position));
+                // launch the new activity
+                context.startActivity(intent);
             }
         });
     }
