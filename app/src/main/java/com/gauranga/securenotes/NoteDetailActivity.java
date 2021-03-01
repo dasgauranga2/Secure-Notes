@@ -2,14 +2,48 @@ package com.gauranga.securenotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class NoteDetailActivity extends AppCompatActivity {
 
     TextView title,content;
+    String title_text,content_text;
+
+    public void delete_note(View view) {
+
+        // create a new alert dialog
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.alert_triangle)
+                .setTitle("Are you sure you want to delete ?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            // creates a new database or open an existing database
+                            SQLiteDatabase database = getApplicationContext().openOrCreateDatabase("NOTES",MODE_PRIVATE,null);
+                            // execute the delete query
+                            database.execSQL("DELETE FROM test WHERE title = '"+title_text+"'");
+                            // go back to Main Activity
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                        catch (Exception e) {
+                            Log.i("DELETE_ERROR", e.toString());
+                            e.printStackTrace();
+                        }
+                    }
+                })
+                .setNegativeButton("NO", null).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +54,8 @@ public class NoteDetailActivity extends AppCompatActivity {
         content = findViewById(R.id.noteDetailContentText);
 
         Intent intent = getIntent();
-        String title_text = intent.getStringExtra("TITLE");
-        String content_text = intent.getStringExtra("CONTENT");
+        title_text = intent.getStringExtra("TITLE");
+        content_text = intent.getStringExtra("CONTENT");
 
         title.setText(title_text);
         content.setText(content_text);
