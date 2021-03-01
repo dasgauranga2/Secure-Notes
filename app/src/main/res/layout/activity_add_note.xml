@@ -17,6 +17,7 @@
         android:background="@drawable/button_bg"
         android:fontFamily="@font/maven_boldest"
         android:letterSpacing="0.2"
+        android:onClick="save_note"
         android:text="SAVE"
         android:textColor="@color/white"
         android:textSize="25sp"
