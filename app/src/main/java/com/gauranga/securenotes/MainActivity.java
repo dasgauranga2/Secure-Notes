@@ -1,6 +1,7 @@
 package com.gauranga.securenotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setup_recyclerview() {
 
-        NoteListAdapter noteListAdapter = new NoteListAdapter(this, titles, contents);
+        NoteListAdapter noteListAdapter = new NoteListAdapter(MainActivity.this, titles, contents);
         recyclerView.setAdapter(noteListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
