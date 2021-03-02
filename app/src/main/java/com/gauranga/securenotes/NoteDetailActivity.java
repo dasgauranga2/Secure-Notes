@@ -18,8 +18,8 @@ public class NoteDetailActivity extends AppCompatActivity {
     TextView title,content;
     String title_text,content_text;
 
+    // delete the note
     public void delete_note(View view) {
-
         // create a new alert dialog
         new AlertDialog.Builder(this)
                 .setIcon(R.drawable.alert_triangle)
@@ -43,6 +43,14 @@ public class NoteDetailActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("NO", null).show();
+    }
+
+    // edit the note
+    public void edit_note(View view) {
+        Intent intent = new Intent(getApplicationContext(), EditNoteActivity.class);
+        intent.putExtra("TITLE",title_text);
+        intent.putExtra("CONTENT",content_text);
+        startActivity(intent);
     }
 
     @Override
