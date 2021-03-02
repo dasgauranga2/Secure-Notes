@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class AddNoteActivity extends AppCompatActivity {
             SQLiteDatabase database = this.openOrCreateDatabase("NOTES",MODE_PRIVATE,null);
             // create a table if one already does not exists
             // and specify the fields of the table and their types
-            database.execSQL("CREATE TABLE IF NOT EXISTS test (title VARCHAR, content VARCHAR)");
+            database.execSQL("CREATE TABLE IF NOT EXISTS test (title VARCHAR, content VARCHAR, UNIQUE (title))");
             // insert data into the table
             database.execSQL("INSERT INTO test (title,content) VALUES ('"+title_text+"','"+content_text+"')");
             // go back to Main Activity
@@ -41,6 +42,11 @@ public class AddNoteActivity extends AppCompatActivity {
             startActivity(intent);
         }
         catch (Exception e) {
+            String error_message = e.toString().toLowerCase();
+            if (error_message.contains("unique") && error_message.contains("constraint")) {
+                Toast.makeText(this, "ENTER A DIFFERENT NOTE TITLE", Toast.LENGTH_SHORT).show();
+            }
+            Log.i("DB_ERROR", error_message);
             e.printStackTrace();
         }
     }
