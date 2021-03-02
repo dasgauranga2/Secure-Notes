@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
         title = findViewById(R.id.noteDetailTitleText);
         content = findViewById(R.id.noteDetailContentText);
+        content.setMovementMethod(new ScrollingMovementMethod());
 
         Intent intent = getIntent();
         title_text = intent.getStringExtra("TITLE");
