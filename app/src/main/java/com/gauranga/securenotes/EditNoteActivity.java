@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import es.dmoral.toasty.Toasty;
 
 public class EditNoteActivity extends AppCompatActivity {
 
@@ -20,6 +23,13 @@ public class EditNoteActivity extends AppCompatActivity {
     public void save_note(View view) {
 
         String new_content_text = new_content.getText().toString();
+        // check if new content is empty
+        if (new_content_text.length()==0) {
+            Toast toast = Toasty.custom(this, "CONTENT EMPTY", R.drawable.error_icon, R.color.toast_bg_color, 500, true, true);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP, 0, (int) (new_content.getY()+new_content.getHeight())-50);
+            toast.show();
+            return;
+        }
 
         try {
             // creates a new database or open an existing database
