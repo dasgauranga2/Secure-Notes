@@ -4,9 +4,9 @@
     android:id="@+id/row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10sp"
+    android:layout_marginLeft="20sp"
     android:layout_marginTop="15sp"
-    android:layout_marginRight="10sp"
+    android:layout_marginRight="20sp"
     android:layout_marginBottom="5sp"
     android:background="@drawable/notelist_bg">
 
@@ -30,7 +30,7 @@
                 android:id="@+id/noteTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center_vertical"
                 android:letterSpacing="0.1"
                 android:paddingLeft="20sp"
