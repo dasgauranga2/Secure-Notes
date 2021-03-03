@@ -15,6 +15,7 @@
         android:fontFamily="@font/maven_medium"
         android:gravity="center_vertical"
         android:letterSpacing="0.05"
+        android:maxLines="2"
         android:paddingLeft="10sp"
         android:text="TextView"
         android:textColor="@color/white"

@@ -51,13 +51,11 @@ public class MainActivity extends AppCompatActivity {
             c.moveToFirst();
             while (c != null) {
                 // retrieve data from the table using the cursor and column index
-                //Log.i("NOTES_DATA", c.getString(title_index) + "--" + c.getString(content_index));
                 titles.add(c.getString(title_index));
                 contents.add(c.getString(content_index));
                 c.moveToNext();
                 setup_recyclerview();
             }
-            //setup_recyclerview();
         }
         catch (Exception e) {
             e.printStackTrace();

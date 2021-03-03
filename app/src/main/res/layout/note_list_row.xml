@@ -28,16 +28,21 @@
 
             <TextView
                 android:id="@+id/noteTitleText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:focusableInTouchMode="false"
                 android:fontFamily="@font/montserrat_light"
                 android:gravity="center_vertical"
                 android:letterSpacing="0.1"
+                android:maxLines="1"
                 android:paddingLeft="20sp"
+                android:scrollHorizontally="true"
+                android:singleLine="false"
                 android:text="TextView"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
