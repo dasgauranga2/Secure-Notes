@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             // creates a new database or open an existing database
             SQLiteDatabase database = this.openOrCreateDatabase("NOTES",MODE_PRIVATE,null);
-
             // cursor is used to retrieve data from the table
             // below SQL query selects all the rows from the table
             Cursor c = database.rawQuery("SELECT * FROM test", null);
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 // retrieve data from the table using the cursor and column index
                 titles.add(c.getString(title_index));
                 contents.add(c.getString(content_index));
+                // move to the next row
                 c.moveToNext();
                 setup_recyclerview();
             }

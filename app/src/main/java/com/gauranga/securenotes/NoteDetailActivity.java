@@ -64,6 +64,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         content.setMovementMethod(new ScrollingMovementMethod());
 
         Intent intent = getIntent();
+        // get the title and content of the note
         title_text = intent.getStringExtra("TITLE");
         content_text = intent.getStringExtra("CONTENT");
 

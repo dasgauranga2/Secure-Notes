@@ -17,7 +17,6 @@ import es.dmoral.toasty.Toasty;
 public class AddNoteActivity extends AppCompatActivity {
 
     EditText title,content;
-    //Toast toast;
 
     public void save_note(View view) {
         // get the title and content entered by the user
@@ -51,7 +50,9 @@ public class AddNoteActivity extends AppCompatActivity {
             startActivity(intent);
         }
         catch (Exception e) {
+            // get the error message
             String error_message = e.toString().toLowerCase();
+            // check for unique constraint error
             if (error_message.contains("unique") && error_message.contains("constraint")) {
                 Toast toast = Toasty.custom(this, "ENTER DIFFERENT NOTE TITLE", R.drawable.error_icon, R.color.toast_bg_color, 500, true, true);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP, 0, (int) (content.getY()+content.getHeight())-50);

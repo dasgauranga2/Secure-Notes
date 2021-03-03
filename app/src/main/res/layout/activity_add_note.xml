@@ -18,7 +18,7 @@
         android:fontFamily="@font/maven"
         android:letterSpacing="0.2"
         android:onClick="save_note"
-        android:text="SAVE"
+        android:text="ADD"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

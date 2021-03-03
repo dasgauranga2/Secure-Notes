@@ -21,7 +21,7 @@ public class EditNoteActivity extends AppCompatActivity {
     TextView title;
 
     public void save_note(View view) {
-
+        // get the new content of the note
         String new_content_text = new_content.getText().toString();
         // check if new content is empty
         if (new_content_text.length()==0) {
@@ -35,7 +35,7 @@ public class EditNoteActivity extends AppCompatActivity {
             // creates a new database or open an existing database
             SQLiteDatabase database = this.openOrCreateDatabase("NOTES",MODE_PRIVATE,null);
             // create a table if one already does not exists
-            // insert data into the table
+            // update the data in the table
             database.execSQL("UPDATE test SET content = '"+new_content_text+"' WHERE title = '"+title_text+"'");
             // go back to Main Activity
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);

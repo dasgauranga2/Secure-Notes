@@ -53,9 +53,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             public void onAuthenticationError(int errorCode,
                                               @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-//                Toast.makeText(context,
-//                        "AUTHENTICATION ERROR : " + errString, Toast.LENGTH_SHORT)
-//                        .show();
             }
             // function is called if biometric authentication is successful
             @Override
@@ -69,9 +66,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-//                Toast.makeText(context, "AUTHENTICATION FAILED",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
             }
         });
         // setup the biometric prompt
@@ -88,7 +82,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        // The 'row.xml' file in layout folder defines
+        // The 'note_list_row.xml' file in layout folder defines
         // the style for each row
         View view = inflater.inflate(R.layout.note_list_row,parent,false);
         return new MyViewHolder(view);
