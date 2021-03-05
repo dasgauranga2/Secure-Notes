@@ -6,6 +6,7 @@ package com.gauranga.securenotes;
 import android.content.Context;
 import android.content.Intent;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 import java.util.concurrent.Executor;
+
+import es.dmoral.toasty.Toasty;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyViewHolder> {
 
@@ -53,6 +56,10 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
             public void onAuthenticationError(int errorCode,
                                               @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                // display error message
+                Toast toast = Toasty.custom(context, errString, R.drawable.error_icon, R.color.toast_bg_color, 500, true, true);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 50);
+                toast.show();
             }
             // function is called if biometric authentication is successful
             @Override

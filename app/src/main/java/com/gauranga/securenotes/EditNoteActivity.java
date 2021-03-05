@@ -57,7 +57,7 @@ public class EditNoteActivity extends AppCompatActivity {
         title_text = intent.getStringExtra("TITLE");
         content_text = intent.getStringExtra("CONTENT");
 
-        title.setText(title_text);
+        title.setText("Edit " + title_text);
         new_content = findViewById(R.id.newNoteText);
         new_content.setText(content_text);
     }
