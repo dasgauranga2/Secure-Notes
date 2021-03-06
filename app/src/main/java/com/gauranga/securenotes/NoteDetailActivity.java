@@ -1,6 +1,7 @@
 package com.gauranga.securenotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
@@ -9,12 +10,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import es.dmoral.toasty.Toasty;
 
 public class NoteDetailActivity extends AppCompatActivity {
 
@@ -74,7 +78,14 @@ public class NoteDetailActivity extends AppCompatActivity {
         content.setText(content_text);
         // get the preference settings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // set the content text size
         int font_size = sharedPreferences.getInt("font_size",12);
         content.setTextSize(font_size);
+        // set the content text bold
+        boolean is_bold = sharedPreferences.getBoolean("text_weight", false);
+        if (is_bold) {
+            Typeface tf = ResourcesCompat.getFont(this, R.font.roboto_mono_bold);
+            content.setTypeface(tf);
+        }
     }
 }

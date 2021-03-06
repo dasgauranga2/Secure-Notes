@@ -12,6 +12,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SeekBarPreference;
+import androidx.preference.SwitchPreference;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +29,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Context context = getPreferenceManager().getContext();
         PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(context);
-        // add a dropdown menu to set the font size
+        // add a dropdown menu to set the text font size
         SeekBarPreference seekbar = new SeekBarPreference(context);
         seekbar.setKey("font_size");
-        seekbar.setTitle("Font Size");
+        seekbar.setTitle("Text Font Size");
         seekbar.setMin(10);
         seekbar.setMax(24);
-        seekbar.setDefaultValue(12);
+        seekbar.setDefaultValue(16);
         seekbar.setShowSeekBarValue(true);
+        // add a switch to style the text bold
+        SwitchPreference text_weight = new SwitchPreference(context);
+        text_weight.setKey("text_weight");
+        text_weight.setTitle("Text Font Weight");
+        text_weight.setDefaultValue(false);
+        text_weight.setSummaryOn("Bold");
+        text_weight.setSummaryOff("Normal");
         // add a list to change the font family
         ListPreference heading_font = new ListPreference(context);
         heading_font.setKey("heading_font");
@@ -53,6 +61,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
         // add the preferences
+        screen.addPreference(text_weight);
         screen.addPreference(seekbar);
         screen.addPreference(heading_font);
         setPreferenceScreen(screen);
