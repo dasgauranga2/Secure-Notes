@@ -67,11 +67,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return ff;
             }
         });
+        // add a list to change the background
+        ListPreference background = new ListPreference(context);
+        background.setKey("background");
+        background.setTitle("Background");
+        background.setEntries(new CharSequence[]{"No background", "Galaxy", "Night Sky", "Northern Lights", "City Sunset", "City Night", "Forest", "Mountain"});
+        background.setEntryValues(new CharSequence[]{"blank", "galaxy", "night_sky", "northern_lights", "city_sunset", "city_night", "forest", "mountain"});
+        background.setSummaryProvider(new Preference.SummaryProvider<ListPreference>() {
+            @Override
+            public CharSequence provideSummary(ListPreference preference) {
+                String ff = (String) background.getEntry();
+                if (ff == null) {
+                    return "No background";
+                }
+                return ff;
+            }
+        });
         // add the preferences
         screen.addPreference(text_weight);
         screen.addPreference(text_underline);
         screen.addPreference(seekbar);
         screen.addPreference(heading_font);
+        screen.addPreference(background);
         setPreferenceScreen(screen);
     }
 }

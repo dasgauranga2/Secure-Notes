@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         set_heading_font();
+        set_background();
     }
 
     // set the font family of the heading title
@@ -107,6 +108,37 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         title.setTypeface(tf);
+    }
+    // set the background in the main screen
+    public void set_background() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String bg = sharedPreferences.getString("background","default");
+        switch (bg) {
+            case "blank":
+                recyclerView.setBackgroundResource(R.color.white);
+                break;
+            case "galaxy":
+                recyclerView.setBackgroundResource(R.drawable.galaxy_bg);
+                break;
+            case "night_sky":
+                recyclerView.setBackgroundResource(R.drawable.night_sky_bg);
+                break;
+            case "northern_lights":
+                recyclerView.setBackgroundResource(R.drawable.northern_lights_bg);
+                break;
+            case "city_sunset":
+                recyclerView.setBackgroundResource(R.drawable.city_sunset_bg);
+                break;
+            case "city_night":
+                recyclerView.setBackgroundResource(R.drawable.city_night_bg);
+                break;
+            case "forest":
+                recyclerView.setBackgroundResource(R.drawable.forest_bg);
+                break;
+            case "mountain":
+                recyclerView.setBackgroundResource(R.drawable.mountain_bg);
+                break;
+        }
     }
 
     public void setup_recyclerview() {
