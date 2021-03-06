@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menuBarLayout"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="#33D516"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,16 +34,29 @@
 
         <ImageButton
             android:id="@+id/addNoteButton"
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="0dp"
             android:background="?android:attr/selectableItemBackground"
             android:onClick="add_note"
-            android:padding="15sp"
+            android:padding="18sp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_photos" />
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="settings"
+            android:padding="18sp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/add_photos" />
+            app:srcCompat="@drawable/settings" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

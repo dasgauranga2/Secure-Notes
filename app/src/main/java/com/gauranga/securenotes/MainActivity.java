@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // launch the settings screen
+    public void settings(View view) {
+        Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gauranga.securenotes">
 
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,19 @@
         android:roundIcon="@mipmap/notes_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".EditNoteActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".NoteDetailActivity" android:screenOrientation="portrait" />
-        <activity android:name=".AddNoteActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity android:name=".SettingsActivity"></activity>
+        <activity
+            android:name=".EditNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoteDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

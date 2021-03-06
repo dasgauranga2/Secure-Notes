@@ -1,10 +1,12 @@
 package com.gauranga.securenotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -67,8 +69,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         // get the title and content of the note
         title_text = intent.getStringExtra("TITLE");
         content_text = intent.getStringExtra("CONTENT");
-
+        // set the the title and the content
         title.setText(title_text);
         content.setText(content_text);
+        // get the preference settings
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int font_size = sharedPreferences.getInt("font_size",12);
+        content.setTextSize(font_size);
     }
 }
