@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -81,11 +82,16 @@ public class NoteDetailActivity extends AppCompatActivity {
         // set the content text size
         int font_size = sharedPreferences.getInt("font_size",12);
         content.setTextSize(font_size);
-        // set the content text bold
+        // set the content text weight
         boolean is_bold = sharedPreferences.getBoolean("text_weight", false);
         if (is_bold) {
             Typeface tf = ResourcesCompat.getFont(this, R.font.roboto_mono_bold);
             content.setTypeface(tf);
+        }
+        // set the content text underline
+        boolean is_underline = sharedPreferences.getBoolean("text_underline", false);
+        if (is_underline) {
+            content.setPaintFlags(content.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         }
     }
 }

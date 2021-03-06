@@ -44,6 +44,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         text_weight.setDefaultValue(false);
         text_weight.setSummaryOn("Bold");
         text_weight.setSummaryOff("Normal");
+        // add a switch to underline the text
+        SwitchPreference text_underline = new SwitchPreference(context);
+        text_underline.setKey("text_underline");
+        text_underline.setTitle("Text Underline");
+        text_underline.setDefaultValue(false);
+        text_underline.setSummaryOn("Yes");
+        text_underline.setSummaryOff("No");
         // add a list to change the font family
         ListPreference heading_font = new ListPreference(context);
         heading_font.setKey("heading_font");
@@ -62,6 +69,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
         // add the preferences
         screen.addPreference(text_weight);
+        screen.addPreference(text_underline);
         screen.addPreference(seekbar);
         screen.addPreference(heading_font);
         setPreferenceScreen(screen);
