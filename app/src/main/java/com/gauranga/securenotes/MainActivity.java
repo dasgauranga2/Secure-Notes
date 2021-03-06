@@ -1,24 +1,33 @@
 package com.gauranga.securenotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<String> titles,contents;
+    TextView title;
 
     // add a new note
     public void add_note(View view) {
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.noteListRecyclerView);
         titles = new LinkedList<>();
         contents =  new LinkedList<>();
+        title = findViewById(R.id.titleText);
 
         try {
             // creates a new database or open an existing database
@@ -66,6 +76,37 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        set_heading_font();
+    }
+
+    // set the font family of the heading title
+    public void set_heading_font() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String font_family = sharedPreferences.getString("heading_font","default");
+        Typeface tf = ResourcesCompat.getFont(this, R.font.maven);
+        switch (font_family) {
+            case "roboto":
+                 tf = ResourcesCompat.getFont(this, R.font.roboto_mono);
+                 break;
+            case "quicksand":
+                tf = ResourcesCompat.getFont(this, R.font.quicksand);
+                break;
+            case "amatic":
+                tf = ResourcesCompat.getFont(this, R.font.amatic);
+                break;
+            case "bebas":
+                tf = ResourcesCompat.getFont(this, R.font.bebas);
+                break;
+            case "helvetica":
+                tf = ResourcesCompat.getFont(this, R.font.helvetica);
+                break;
+        }
+        title.setTypeface(tf);
     }
 
     public void setup_recyclerview() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.preference.DropDownPreference;
 import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
@@ -35,8 +36,25 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         seekbar.setMax(24);
         seekbar.setDefaultValue(12);
         seekbar.setShowSeekBarValue(true);
+        // add a list to change the font family
+        ListPreference heading_font = new ListPreference(context);
+        heading_font.setKey("heading_font");
+        heading_font.setTitle("Heading Font Family");
+        heading_font.setEntries(new CharSequence[]{"Roboto Mono", "Quicksand", "Amatic", "Bebas", "Helvetica"});
+        heading_font.setEntryValues(new CharSequence[]{"roboto", "quicksand", "amatic", "bebas", "helvetica"});
+        heading_font.setSummaryProvider(new Preference.SummaryProvider<ListPreference>() {
+            @Override
+            public CharSequence provideSummary(ListPreference preference) {
+                String ff = (String) heading_font.getEntry();
+                if (ff == null) {
+                    return "Default";
+                }
+                return ff;
+            }
+        });
         // add the preferences
         screen.addPreference(seekbar);
+        screen.addPreference(heading_font);
         setPreferenceScreen(screen);
     }
 }
