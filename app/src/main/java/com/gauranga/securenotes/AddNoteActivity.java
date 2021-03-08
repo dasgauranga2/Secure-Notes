@@ -12,6 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import es.dmoral.toasty.Toasty;
 
 public class AddNoteActivity extends AppCompatActivity {
@@ -22,6 +27,7 @@ public class AddNoteActivity extends AppCompatActivity {
         // get the title and content entered by the user
         String title_text = title.getText().toString();
         String content_text = content.getText().toString();
+        String current_date = get_current_date();
 
         // check if the title/content is empty
         if (title_text.length()==0) {
@@ -42,9 +48,10 @@ public class AddNoteActivity extends AppCompatActivity {
             SQLiteDatabase database = this.openOrCreateDatabase("NOTES",MODE_PRIVATE,null);
             // create a table if one already does not exists
             // and specify the fields of the table and their types
-            database.execSQL("CREATE TABLE IF NOT EXISTS test (title VARCHAR, content VARCHAR, UNIQUE (title))");
+            database.execSQL("CREATE TABLE IF NOT EXISTS test (title VARCHAR, content VARCHAR, currdate VARCHAR, UNIQUE (title))");
             // insert data into the table
-            database.execSQL("INSERT INTO test (title,content) VALUES ('"+title_text+"','"+content_text+"')");
+            //Toast.makeText(this, current_dat, Toast.LENGTH_SHORT).show();
+            database.execSQL("INSERT INTO test (title,content,currdate) VALUES ('"+title_text+"','"+content_text+"','"+current_date+"')");
             // go back to Main Activity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -61,6 +68,11 @@ public class AddNoteActivity extends AppCompatActivity {
             Log.i("DB_ERROR", error_message);
             e.printStackTrace();
         }
+    }
+    // get the current date
+    public String get_current_date() {
+        Date current = Calendar.getInstance().getTime();
+        return DateFormat.getDateInstance().format(current);
     }
 
     @Override

@@ -29,6 +29,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
 
     List<String> titles;
     List<String> contents;
+    List<String> dates;
     Context context;
 
     Intent intent;
@@ -38,10 +39,11 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
     BiometricPrompt.PromptInfo promptInfo;
 
     // the context and the data is passed to the adapter
-    public NoteListAdapter(Context ct, List<String> tit, List<String> cont) {
+    public NoteListAdapter(Context ct, List<String> tit, List<String> cont, List<String> dat) {
         context = ct;
         titles = tit;
         contents = cont;
+        dates = dat;
 
         // create an executor object
         executor = ContextCompat.getMainExecutor(context);
@@ -99,6 +101,8 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // set the text view to the title of the note
         holder.title.setText(titles.get(position));
+        // set the text view to the date of the note
+        holder.date.setText(dates.get(position));
 
         // detect if an item is clicked
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
@@ -121,12 +125,13 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView title;
+        TextView title,date;
         ConstraintLayout main_layout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.noteTitleText);
+            date = itemView.findViewById(R.id.noteDateText);
             main_layout = itemView.findViewById(R.id.row_layout);
         }
     }

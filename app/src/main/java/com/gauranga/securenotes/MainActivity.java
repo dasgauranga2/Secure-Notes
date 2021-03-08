@@ -26,7 +26,7 @@ import es.dmoral.toasty.Toasty;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<String> titles,contents;
+    List<String> titles,contents,dates;
     TextView title;
 
     // add a new note
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.noteListRecyclerView);
         titles = new LinkedList<>();
         contents =  new LinkedList<>();
+        dates =  new LinkedList<>();
         title = findViewById(R.id.titleText);
 
         try {
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             int title_index = c.getColumnIndex("title");
             // 'content' column index
             int content_index = c.getColumnIndex("content");
+            // 'date' column index
+            int date_index = c.getColumnIndex("currdate");
 
             // move the cursor to the beginning
             c.moveToFirst();
@@ -68,12 +71,15 @@ public class MainActivity extends AppCompatActivity {
                 // retrieve data from the table using the cursor and column index
                 titles.add(c.getString(title_index));
                 contents.add(c.getString(content_index));
+                dates.add(c.getString(date_index));
+                Log.i("NOTE_TITLE", c.getString(title_index));
                 // move to the next row
                 c.moveToNext();
                 setup_recyclerview();
             }
         }
         catch (Exception e) {
+            Log.i("NOTE_ERROR", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -143,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setup_recyclerview() {
 
-        NoteListAdapter noteListAdapter = new NoteListAdapter(MainActivity.this, titles, contents);
+        NoteListAdapter noteListAdapter = new NoteListAdapter(MainActivity.this, titles, contents, dates);
         recyclerView.setAdapter(noteListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
