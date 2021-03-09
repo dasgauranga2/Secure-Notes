@@ -94,4 +94,34 @@ public class NoteDetailActivity extends AppCompatActivity {
             content.setPaintFlags(content.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        set_heading_font();
+    }
+
+    public void set_heading_font() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String font_family = sharedPreferences.getString("heading_font","default");
+        Typeface tf = ResourcesCompat.getFont(this, R.font.maven);
+        switch (font_family) {
+            case "roboto":
+                tf = ResourcesCompat.getFont(this, R.font.roboto_mono);
+                break;
+            case "quicksand":
+                tf = ResourcesCompat.getFont(this, R.font.quicksand);
+                break;
+            case "amatic":
+                tf = ResourcesCompat.getFont(this, R.font.amatic);
+                break;
+            case "bebas":
+                tf = ResourcesCompat.getFont(this, R.font.bebas);
+                break;
+            case "helvetica":
+                tf = ResourcesCompat.getFont(this, R.font.helvetica);
+                break;
+        }
+        title.setTypeface(tf);
+    }
 }
