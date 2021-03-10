@@ -80,7 +80,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         // get the preference settings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // set the content text size
-        int font_size = sharedPreferences.getInt("font_size",12);
+        int font_size = sharedPreferences.getInt("font_size",16);
         content.setTextSize(font_size);
         // set the content text weight
         boolean is_bold = sharedPreferences.getBoolean("text_weight", false);
